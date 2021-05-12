@@ -77,6 +77,12 @@ alias lr='ls -tRFh'   #sorted by date,recursive,show type,human readable
 alias lt='ls -ltFh'   #long list,sorted by date,show type,human readable
 alias ll='ls -l'      #long list
 
+# convert with ffmpeg (HDR -> SDR)
+
+fmpg(){
+  ffmpeg -i $1 -vf zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p -c:v libx264 -crf 17 -preset slower $2
+}
+
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
