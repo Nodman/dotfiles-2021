@@ -1,0 +1,26 @@
+[alias]
+	co = checkout
+	br = branch
+	cm = commit
+	st = status
+	hard = reset --hard
+	soft = reset --soft
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustexitcode = true
+[merge]
+	tool = Kaleidoscope
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false
+[diff]
+	tool = Kaleidoscope
+[user]
+	name = Nodman
+	email = nodman@icloud.com
+[core]
+	excludesfile = ~/.gitignore
+

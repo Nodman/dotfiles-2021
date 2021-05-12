@@ -1,0 +1,32 @@
+{
+  "tsserver.enableJavascript": true,
+  "javascript.suggest.enabled": false,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+  "diagnostic.enableSign": true,
+  "diagnostic.enableHighlightLineNumber": false,
+  "diagnostic.errorSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.level": "hint",
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualText": false,
+  "diagnostic.virtualTextCurrentLineOnly": true,
+  "diagnostic.virtualTextLines": 1,
+  "diagnostic.enableMessage": "always",
+  "explorer.keyMappings.global": {
+    "<cr>": [
+      "expandable?",
+      ["expanded?", "collapse", "expand"],
+      "open"
+    ],
+    "v": "open:vsplit",
+    "s": "open:split"
+  },
+  "explorer.file.showHiddenFiles": true,
+  "explorer.buffer.tabOnly": true,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.buffer.showHiddenBuffers": true,
+  "Lua.diagnostics.globals": ["vim"],
+  "prettier.eslintIntegration": true,
+  "prettier.stylelintIntegration": true
+}
