@@ -3,10 +3,9 @@
 current_date=$(date +'%Y-%m-%d')
 branch_name="update-${current_date}"
 
-echo $branch_name
 git pull;
 
-git co -b update;
+git co -b $branch_name;
 
 # nvim
 rm -rf ./nvim
@@ -23,6 +22,9 @@ cp -r ~/.hammerspoon ./
 #zsh
 cp -i ~/.zshrc ./
 
+#git
+cp -i ~/.gitconfig ./
+
 #tmux
 cp -i ~/.tmux.conf ./
 
@@ -36,4 +38,4 @@ cp -r ~/applescript ./
 
 git add .
 git commit -am "update ${current_date}"
-git push -u origin ${branch_name}
+git push -u origin $branch_name
