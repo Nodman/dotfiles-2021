@@ -1,6 +1,6 @@
 #!/bin/bash
 
-current_date=$(date +'%Y-%m-%d')
+current_date=$(date +'%Y-%m-%d_%H-%M')
 branch_name="update-${current_date}"
 
 git pull;
