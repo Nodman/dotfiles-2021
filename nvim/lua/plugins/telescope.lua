@@ -31,7 +31,7 @@ map('n', 'gr', '<CMD>Telescope coc references<CR>', {silent = true})
 require('telescope').setup{
   defaults = {
     preview_cutoff = 1,
-    file_sorter = sorters.get_fzy_sorter,
+    -- file_sorter = sorters.get_fzy_sorter,
 
     mappings = {
       i = {
@@ -58,15 +58,22 @@ require('telescope').setup{
       -- I will work on this more later.
       use_highlighter = true,
     }, ]]
-    fzy_native = {
+    --[[ fzy_native = {
       override_generic_sorter = false,
       override_file_sorter = true,
+    } ]]
+    fzf = {
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                       -- the default case_mode is "smart_case"
     }
   }
 }
 
 -- add fuzzy search
-require('telescope').load_extension('fzy_native')
+-- require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('fzf')
 require('telescope').load_extension('coc')
 
 local with_dropdown = {

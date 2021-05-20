@@ -33,14 +33,15 @@ local M = require'packer'.startup(function(use)
     requires = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-fzy-native.nvim' },
+      -- { 'nvim-telescope/telescope-fzy-native.nvim' },
       { 'kyazdani42/nvim-web-devicons' },
-      { 'nvim-telescope/telescope-fzf-writer.nvim' }
     },
     config = function()
       require'plugins/telescope'
     end
   }
+
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- tree sitter provider
   use {

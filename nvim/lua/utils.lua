@@ -41,6 +41,10 @@ local function windowIsRelative(windowId)
   return vim.api.nvim_win_get_config(windowId).relative ~= ""
 end
 
+local function windowIsCf()
+  return vim.bo.buftype == "quickfix"
+end
+
 -- togle autoMaximize
 function M.toggleAutoMaximizeWindow()
   M.disableAutoMaximize = not M.disableAutoMaximize
@@ -50,7 +54,7 @@ function M.maximizeWindow ()
   local currentWindowId = api.nvim_get_current_win()
   local windowsIds = api.nvim_list_wins()
   -- nothing to resize
-  if #windowsIds < 2 or windowIsRelative(currentWindowId) then
+  if #windowsIds < 2 or windowIsRelative(currentWindowId) or windowIsCf() then
     return
   end
 
