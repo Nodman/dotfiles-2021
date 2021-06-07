@@ -1,3 +1,4 @@
+local exec = vim.api.nvim_exec
 local map = require'tools'.map
 local createAugroup = require'tools'.createAugroup
 
@@ -37,14 +38,16 @@ vim.g.coc_explorer_global_presets = {
 }
 
 -- adjust highlight
-vim.api.nvim_exec('hi! link CocErrorHighlight healthError', false)
-vim.api.nvim_exec('hi! link CocWarningHighlight healthWarning', false)
-vim.api.nvim_exec('hi! link CocExplorerBookmarkLine PmenuSel', false)
-vim.api.nvim_exec('hi! link CocExplorerSelectUI MarkdownBold', false)
-vim.api.nvim_exec('hi CocHoverRange guifg=NONE guibg=NONE gui=underline', false)
+exec('hi! link CocErrorHighlight healthError', false)
+exec('hi! link CocErrorFloat NormalFloat', false)
+exec('hi! link CocWarningHighlight healthWarning', false)
+exec('hi! link CocExplorerBookmarkLine PmenuSel', false)
+exec('hi! link CocExplorerSelectUI MarkdownBold', false)
+exec('hi CocHoverRange guifg=NONE guibg=NONE gui=underline', false)
+exec('hi LspDiagnosticsUnderlineError gui=undercurl', false)
 
 -- commands
-vim.api.nvim_exec([[
+exec([[
   command! -nargs=0 Format :call CocAction('format')
   command! -nargs=? Fold :call CocAction('fold', <f-args>)
   command! -nargs=0 OrgImports :call CocAction('runCommand', 'editor.action.organizeImport')
