@@ -7,5 +7,4 @@ require('theme/nord')
 opt('o', 'fcs', 'eob: ')
 exec('hi VertSplit guifg=#2E3440 guibg=bg', false)
 exec('hi! link MsgArea Operator', false)
-
-exec('hi LspDiagnosticsUnderlineError gui=undercurl', false)
+exec('hi! link CocExplorerGitDeleted DiffDelete', false)
