@@ -22,4 +22,4 @@
 	name = Nodman
 	email = nodman@icloud.com
 [core]
-	excludesfile = /Users/spooner/.gitignore_global
+	excludesfile = ~/.gitignore
