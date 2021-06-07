@@ -23,4 +23,3 @@
 	email = nodman@icloud.com
 [core]
 	excludesfile = ~/.gitignore
-
