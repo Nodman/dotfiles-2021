@@ -7,6 +7,9 @@ source $HOME/.zshenv
 # Greetings
 echo May the force be with you, $LOGNAME!
 
+#options
+setopt autocd
+
 # autompletion preview
 #
 # ARM
@@ -92,6 +95,12 @@ fmpg(){
   ffmpeg -i $1 -vf zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p -c:v libx264 -crf 17 -preset slower $2
 }
 
+#python path
+export PATH=~/Library/Python/3.9/bin:$PATH
+
 # fnm
 export PATH=$HOME/.fnm:$PATH
 eval "`fnm env`"
+
+alias ln-node='ln -s $(which node) /usr/local/bin/node'
+alias unln-node='rm /usr/local/bin/node'

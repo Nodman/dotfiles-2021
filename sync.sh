@@ -10,6 +10,7 @@ git co -b $branch_name;
 # nvim
 rm -rf ./nvim
 cp -r ~/.config/nvim ./
+rm -rf ./nvim/spell
 
 #kitty
 rm -rf ./kitty
