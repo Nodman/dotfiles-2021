@@ -82,9 +82,18 @@ local M = require'packer'.startup(function(use)
       { 'nvim-lua/plenary.nvim' },
     },
     config = function()
-      require'gitlinker'.setup()
+      require'gitlinker'.setup({
+        opts = {
+          -- callback for what to do with the url
+          action_callback = require"gitlinker.actions".open_in_browser,
+          mappings = "<leader>gb"
+        }
+      })
     end
   }
+
+  -- git diff
+  use { 'sindrets/diffview.nvim' }
 
   -- auto pairs
   use 'jiangmiao/auto-pairs'

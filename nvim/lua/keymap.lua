@@ -33,7 +33,7 @@ map('', '<leader>fed', '<CMD>e $MYVIMRC<CR>')
 map('', '<leader>feR', '<CMD>luafile %<CR>')
 
 -- print file info
-map('n', '<Leader>Ib', '<CMD>echo printf("[%.2f KB] %s", wordcount().bytes / 1000.0, expand(@%))<CR>')
+map('n', '<Leader>if', '<CMD>echo printf("[%.2f KB] %s", wordcount().bytes / 1000.0, expand(@%))<CR>')
 
 -- search selection in buffer
 map('v', '//', 'y/\\V<C-r>=escape(@","/\")<CR><CR>')

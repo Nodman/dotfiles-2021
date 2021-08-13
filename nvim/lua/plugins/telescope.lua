@@ -2,7 +2,7 @@ local map = require('tools').map
 local actions = require('telescope.actions')
 local finders = require('telescope.finders')
 local pickers = require('telescope.pickers')
-local sorters = require('telescope.sorters')
+-- local sorters = require('telescope.sorters')
 local action_state = require('telescope.actions.state')
 local conf = require('telescope.config').values
 
@@ -12,9 +12,12 @@ vim.api.nvim_exec('hi! link TelescopeMatching WildMenu', false)
 
 -- telescope specific mappings
 map('n', '<leader>ff', builtinTemplate..'find_files()<CR>', {silent = true})
+map('n', '<leader>fo', builtinTemplate..'oldfiles()<CR>', {silent = true})
+map('n', '<leader>fl', '<CMD>Telescope builtin<CR>', {silent = true})
 map('n', '<leader>fg', builtinTemplate..'git_files()<CR>', {silent = true})
-map('n', '<leader>fs', builtinTemplate..'live_grep()<CR>', {silent = true})
--- map('n', '<leader>fs', '<CMD> lua require("telescope").extensions.fzf_writer.staged_grep()<CR>', {silent = true})
+map('n', '<leader>fg', builtinTemplate..'live_grep()<CR>', {silent = true})
+map('n', '<leader>fs', builtinTemplate..'grep_string{ path_display = true, word_match = "-w", only_sort_text = true }<CR>', {silent = true})
+
 map('n', '<leader>fb', builtinTemplate..'buffers({ show_all_buffers = true })<CR>', {silent = true})
 map('n', '<leader>fh', builtinTemplate..'help_tags()<CR>', {silent = true})
 map('n', '<leader>Tc', builtinTemplate..'colorscheme()<CR>', {silent = true})
@@ -27,12 +30,21 @@ map('n', '<leader>fc', '<CMD>lua require"plugins.telescope".coc_list(require("te
 map('n', '<leader>fd', '<CMD>Telescope coc diagnostics<CR>', {silent = true})
 map('n', 'gr', '<CMD>Telescope coc references<CR>', {silent = true})
 
+
 -- custom remapping
 require('telescope').setup{
   defaults = {
-    preview_cutoff = 1,
-    -- file_sorter = sorters.get_fzy_sorter,
-
+    layout_config = {
+      preview_cutoff = 1,
+    },
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--column',
+      '--smart-case'
+    },
     mappings = {
       i = {
         ["<C-j>"] = actions.move_selection_next,
@@ -49,30 +61,15 @@ require('telescope').setup{
     },
   },
   extensions = {
-    --[[ fzf_writer = {
-      minimum_grep_characters = 3,
-      minimum_files_characters = 3,
-
-      -- Disabled by default.
-      -- Will probably slow down some aspects of the sorter, but can make color highlights.
-      -- I will work on this more later.
-      use_highlighter = true,
-    }, ]]
-    --[[ fzy_native = {
-      override_generic_sorter = false,
-      override_file_sorter = true,
-    } ]]
     fzf = {
-      override_generic_sorter = false, -- override the generic sorter
+      override_generic_sorter = true, -- override the generic sorter
       override_file_sorter = true,     -- override the file sorter
       case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                                       -- the default case_mode is "smart_case"
     }
   }
 }
 
 -- add fuzzy search
--- require('telescope').load_extension('fzy_native')
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('coc')
 
