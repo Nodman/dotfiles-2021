@@ -39,6 +39,7 @@ vim.g.coc_explorer_global_presets = {
 
 -- adjust highlight
 exec('hi! link CocErrorHighlight healthError', false)
+exec('hi! link CocUnusedHighlight CocExplorerBufferHidden', false)
 exec('hi! link CocErrorFloat NormalFloat', false)
 exec('hi! link CocWarningHighlight healthWarning', false)
 exec('hi! link CocExplorerBookmarkLine PmenuSel', false)
