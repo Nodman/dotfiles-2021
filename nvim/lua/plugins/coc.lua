@@ -46,6 +46,7 @@ exec('hi! link CocExplorerBookmarkLine PmenuSel', false)
 exec('hi! link CocExplorerSelectUI MarkdownBold', false)
 exec('hi CocHoverRange guifg=NONE guibg=NONE gui=underline', false)
 exec('hi LspDiagnosticsUnderlineError gui=undercurl', false)
+-- exec('hi CocErrorHighlight gui=undercurl guibg=NONE guifg=#BF616A', false)
 
 -- commands
 exec([[
