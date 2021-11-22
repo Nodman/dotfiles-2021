@@ -27,6 +27,7 @@
   "explorer.icon.enableNerdfont": true,
   "explorer.buffer.showHiddenBuffers": true,
   "Lua.diagnostics.globals": ["vim"],
-  "prettier.eslintIntegration": true,
-  "prettier.stylelintIntegration": true
+  "eslint.format.enable": true,
+  "prettier.stylelintIntegration": true,
+  "prettier.eslintIntegration": true
 }

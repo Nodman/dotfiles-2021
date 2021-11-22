@@ -31,7 +31,6 @@ local M = require'packer'.startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
-      { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
       -- { 'nvim-telescope/telescope-fzy-native.nvim' },
       { 'kyazdani42/nvim-web-devicons' },
@@ -93,7 +92,12 @@ local M = require'packer'.startup(function(use)
   }
 
   -- git diff
-  use { 'sindrets/diffview.nvim' }
+  use {
+    'sindrets/diffview.nvim',
+    config = function ()
+      require'plugins/diffview'
+    end
+  }
 
   -- auto pairs
   use 'jiangmiao/auto-pairs'
@@ -105,7 +109,6 @@ local M = require'packer'.startup(function(use)
   use {
     'mfussenegger/nvim-dap',
     requires = {
-      { 'theHamsta/nvim-dap-virtual-text' },
       { 'rcarriga/nvim-dap-ui' },
     },
     config = function ()
@@ -113,6 +116,10 @@ local M = require'packer'.startup(function(use)
     end,
     cmd = 'DapEnable',
   }
+
+  --[[ use {
+    'theHamsta/nvim-dap-virtual-text'
+  } ]]
 
   -- better quickfix
   use 'kevinhwang91/nvim-bqf'
