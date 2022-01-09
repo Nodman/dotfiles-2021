@@ -18,8 +18,7 @@ local M = require'packer'.startup(function(use)
           let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
           let initial_command = printf(command_fmt, shellescape(a:query))
           let reload_command = printf(command_fmt, '{q}')
-          let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-          call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+          let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]} call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
         endfunction
 
         command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
@@ -190,6 +189,16 @@ local M = require'packer'.startup(function(use)
       'lua',
       'json',
     }
+  }
+
+  use {
+    'VonHeikemen/fine-cmdline.nvim',
+    requires = {
+      { 'MunifTanjim/nui.nvim' },
+    },
+    config = function ()
+      require'plugins/fine-cmd'
+    end
   }
 
   -- lsp utils

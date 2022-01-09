@@ -7,7 +7,7 @@ map('n', '<C-Space>', '<Nop>', {silent = true})
 vim.g.mapleader = ' ';
 
 -- enter command line faster
-map('n', ';', ':')
+-- map('n', ';', ':')
 
 -- don't invoke autocompletion menu due to accidental keystrokes
 map('i', '<C-p>', '<Nop>')
