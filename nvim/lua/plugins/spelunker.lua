@@ -5,7 +5,7 @@ vim.g.spelunker_check_type = 2
 vim.g.spelunker_disable_auto_group = 1
 vim.g.spelunker_highlight_type = 2
 
-exec('hi SpelunkerSpellBad guifg=NONE gui=undercurl', false)
+exec('hi SpelunkerSpellBad guifg=NONE gui=undercurl guisp=#EBCB8B', false)
 exec('hi SpelunkerComplexOrCompoundWord guifg=NONE gui=NONE', false)
 
 createAugroup({

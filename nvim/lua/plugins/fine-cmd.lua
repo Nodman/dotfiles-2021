@@ -19,11 +19,10 @@ require('fine-cmdline').setup({
     border = {
       -- style = { " ", " ", " ", " ", " ", "─", " ", " " },
       style = "rounded",
-      highlight = 'Operator',
     },
     win_options = {
-      winblend = 5,
-      winhighlight = 'Normal:Normal',
+      winblend = 20,
+      winhighlight = "Normal:Normal,FloatBorder:Operator"
     },
   },
   hooks = {
