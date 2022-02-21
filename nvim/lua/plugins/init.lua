@@ -6,26 +6,6 @@ local M = require'packer'.startup(function(use)
   -- colour scheme
   use 'christianchiarulli/nvcode-color-schemes.vim'
 
-  use 'wakatime/vim-wakatime'
-
-  --until telescope live grep freezes
-  use 'junegunn/fzf'
-  use {
-    'junegunn/fzf.vim',
-    config = function ()
-      vim.cmd([[
-        function! RipgrepFzf(query, fullscreen)
-          let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-          let initial_command = printf(command_fmt, shellescape(a:query))
-          let reload_command = printf(command_fmt, '{q}')
-          let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]} call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-        endfunction
-
-        command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-      ]])
-    end
-  }
-
   -- fzf alternative
   use {
     'nvim-telescope/telescope.nvim',
@@ -120,14 +100,12 @@ local M = require'packer'.startup(function(use)
     'theHamsta/nvim-dap-virtual-text'
   } ]]
 
-  -- better quickfix
-  use 'kevinhwang91/nvim-bqf'
-
   -- colorize color values
   use {
     'norcalli/nvim-colorizer.lua',
     config = function()
       require'colorizer'.setup {
+        'lua',
         'css';
         'scss';
         'javascript';
@@ -137,6 +115,7 @@ local M = require'packer'.startup(function(use)
       }
     end,
     ft = {
+      'lua',
       'css';
       'scss';
       'javascript';
@@ -157,20 +136,6 @@ local M = require'packer'.startup(function(use)
       require'plugins/coc'
     end
   }
-
-  -- neovim LSP
-  --[[ use {
-    'neovim/nvim-lspconfig',
-    ft = {
-      'lua',
-    },
-  } ]]
-
-  -- LSP installer
-  -- use 'kabouzeid/nvim-lspinstall'
-
-  -- completion
-  -- use 'nvim-lua/completion-nvim'
 
   -- spell check
   use {
@@ -201,16 +166,9 @@ local M = require'packer'.startup(function(use)
     end
   }
 
-  -- lsp utils
-  -- use 'glepnir/lspsaga.nvim'
+  use 'wakatime/vim-wakatime'
 
-  -- file explorer
-  --[[ use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      { 'kyazdani42/nvim-web-devicons' },
-    },
-  } ]]
+  use 'tpope/vim-obsession'
 
 end)
 

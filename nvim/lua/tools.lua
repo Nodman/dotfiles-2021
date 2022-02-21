@@ -1,9 +1,9 @@
 local api = vim.api
 local cmd = vim.cmd
+local exec = vim.api.nvim_exec
 local M = {}
 
 local scopes = {o = vim.o, b = vim.bo, w = vim.wo, g = vim.g}
-local guicursor = vim.o.guicursor
 
 -- vim set helper
 function M.opt(scope, key, value)
@@ -29,6 +29,21 @@ function M.createAugroup(autocmds, name)
         cmd('autocmd ' .. table.concat(autocmd, ' '))
     end
     cmd('augroup END')
+end
+
+function M.hi(groupName, params)
+  params = params or {}
+  local highlightString = ''
+
+  for k,v in pairs(params) do
+    highlightString = highlightString..string.format('  %s=%s', k, v)
+  end
+
+  exec('hi '..groupName..highlightString, false)
+end
+
+function M.hiLink(groupFrom, groupTo)
+  exec('hi! link '..groupFrom..' '..groupTo, false)
 end
 
 return M

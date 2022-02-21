@@ -1,8 +1,8 @@
 local tools = require'tools'
+local palette = require'theme.nord'.palette
 
 tools.opt('o', 'showmode', false)
 
-local statusLineModeHl = '%#ModeBlock#'
 local statusLineRest = table.concat({
   '%#GeneralBlock#',
   ' %t ',
@@ -12,22 +12,38 @@ local statusLineRest = table.concat({
   '%#GeneralBlock#',
   '%p%% ',
   '%l:%c ',
-  '%#AccentBlock#',
-  '%{&filetype} ',
+  '%#ObsessionBlock#',
+  '%{ObsessionStatus(" R ", " P ")}',
+  '%#FtBlock#',
 })
 
 local modesMap = {
-  ['n']       = { name = 'nrm', color = '#8FBCBB' },
-  ['i']       = { name = 'ins', color = '#B48EAD' },
-  ['R']       = { name = 'rpl', color = '#81A1C1' },
-  ['v']       = { name = 'vis', color = '#5E81AC' },
-  ['V']       = { name = 'vln', color = '#5E81AC' },
-  ['']      = { name = 'vbl', color = '#5E81AC' },
-  ['c']       = { name = 'com', color = '#A3BE8C' },
-  ['t']       = { name = 'ter', color = '#EBCB8B' },
+  ['n']  = { name = 'nrm', color = palette.frost4 },
+  ['i']  = { name = 'ins', color = palette.pink },
+  ['R']  = { name = 'rpl', color = palette.frost2 },
+  ['v']  = { name = 'vis', color = palette.frost1 },
+  ['V']  = { name = 'vln', color = palette.frost1 },
+  [''] = { name = 'vbl', color = palette.frost1 },
+  ['c']  = { name = 'com', color = palette.green },
+  ['t']  = { name = 'ter', color = palette.yellow },
 }
 
-local getModeAttrs = function()
+local ftMap = {
+  javascript = 'js',
+  javascriptreact = 'jsx',
+  typescript = 'ts',
+  typescriptreact = 'tsx',
+}
+
+local function getFt(ft)
+  if ft == '' then
+    return '-'
+  end
+
+  return ftMap[ft] or ft
+end
+
+local function getModeAttrs()
   local mode = vim.api.nvim_get_mode().mode
   local attrs = modesMap[mode]
 
@@ -35,39 +51,37 @@ local getModeAttrs = function()
     attrs = { name = mode, color = modesMap['n']['color']}
   end
 
-
   return attrs
 end
 
-local updateModeColor = function(color)
-  vim.api.nvim_exec( 'hi ModeBlock guifg='..color, false)
+local function updateModeColor (color)
+  vim.api.nvim_exec( 'hi ModeBlock guibg='..color..' guifg='..palette.night1, false)
 end
 
- ActiveStatusLine = function()
-  local fileType = vim.bo.ft
+function ActiveStatusLine (winId)
+  local currentWindowId = vim.api.nvim_get_current_win()
 
-  if fileType == 'NvimTree' then return ' ' end
+  if winId ~= currentWindowId then
+    return ' '
+  end
 
   local modeAttrs = getModeAttrs()
 
   updateModeColor(modeAttrs.color)
 
-  return string.format('%s  %s%s', statusLineModeHl, modeAttrs.name, statusLineRest)
+  return string.format('%s %s %s %s ', '  %#ModeBlock#', modeAttrs.name, statusLineRest, getFt(vim.bo.ft))
 end
 
-vim.api.nvim_exec(
-[[
-  hi ModeBlock ctermbg=NONE ctermfg=110 guibg=NONE guifg=NONE
+vim.api.nvim_exec([[
   hi statusline ctermbg=NONE guibg=NONE
+
   hi statuslinenc ctermbg=NONE guibg=NONE
-  hi GeneralBlock ctermbg=NONE ctermfg=60 guifg=#616e88 guibg=NONE
-  hi AccentBlock ctermbg=NONE ctermfg=222 guifg=#D08770 guibg=NONE
+
+  hi GeneralBlock ctermbg=NONE ctermfg=60 guifg=]]..palette.night5..[[ guibg=NONE
+
+  hi ObsessionBlock ctermbg=NONE ctermfg=222 guifg=]]..palette.night1..[[ guibg=]]..palette.red..[[
+
+  hi FtBlock ctermbg=NONE ctermfg=222 guifg=]]..palette.night1..[[ guibg=]]..palette.pink..[[
 ]], false)
 
-tools.createAugroup({
-  { 'WinEnter,BufEnter', '*', 'setlocal', 'statusline=%!v:lua.ActiveStatusLine()"' },
-  { 'WinLeave,BufLeave', '*', 'setlocal', 'statusline=\\ \\ %#GeneralBlock#%t\\ %m' },
-  { 'WinLeave,BufLeave', 'NvimTree', 'setlocal', 'statusline=\\ ' },
-}, 'statusline_hl')
-
-vim.o.statusline = ActiveStatusLine()
+vim.o.statusline = '%!v:lua.ActiveStatusLine(g:statusline_winid)'

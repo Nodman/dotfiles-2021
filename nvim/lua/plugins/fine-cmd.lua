@@ -5,32 +5,30 @@ map('n', ';', '<CMD>lua require("fine-cmdline").open()<CR>', {silent = true})
 require('fine-cmdline').setup({
   cmdline = {
     enable_keymaps = true,
+    prompt = ' :'
   },
   popup = {
+    buf_options = {
+      filetype = 'FineCmdlinePrompt'
+    },
     relative = "editor",
     position = {
       row = '10%',
       col = '50%',
     },
     size = {
-      width = '40%',
+      width = '30%',
       height = 1
     },
     border = {
-      -- style = { " ", " ", " ", " ", " ", "─", " ", " " },
-      style = "rounded",
+      style = { " ", "▄", " ", " ", " ", "▀", " ", " " },
     },
     win_options = {
-      winblend = 20,
-      winhighlight = "Normal:Normal,FloatBorder:Operator"
+      winblend = 0,
+      winhighlight = "Normal:FineCmdlineNormal,FloatBorder:FineCmdlineBorder"
     },
   },
   hooks = {
-    before_mount = function(input)
-      -- Prompt can influence the completion engine.
-      -- This is your chance to change it to something that works for you
-      -- input.input_props.prompt = ': '
-    end,
     set_keymaps = function(imap, feedkeys)
       local fn = require('fine-cmdline').fn
 
@@ -44,7 +42,7 @@ require('fine-cmdline').setup({
 
       imap('<C-j>', function()
         if vim.fn.pumvisible() == 0 then
-          fn.up_history()
+          fn.down_history()
         else
           feedkeys('<C-n>')
         end

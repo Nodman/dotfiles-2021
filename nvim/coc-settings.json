@@ -14,20 +14,44 @@
   "diagnostic.virtualTextLines": 1,
   "diagnostic.enableMessage": "always",
   "explorer.keyMappings.global": {
-    "<cr>": [
-      "expandable?",
-      ["expanded?", "collapse", "expand"],
-      "open"
-    ],
+    "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
     "v": "open:vsplit",
     "s": "open:split"
   },
   "explorer.file.showHiddenFiles": true,
+  "explorer.floating.border.chars": [" ", " ", " ", " ", " ", " ", " ", " "],
   "explorer.buffer.tabOnly": true,
   "explorer.icon.enableNerdfont": true,
   "explorer.buffer.showHiddenBuffers": true,
   "Lua.diagnostics.globals": ["vim"],
   "eslint.format.enable": true,
   "prettier.stylelintIntegration": true,
-  "prettier.eslintIntegration": true
+  "prettier.eslintIntegration": true,
+  "suggest.completionItemKindLabels": {
+    "method": "  ",
+    "function": "  ",
+    "variable": "[]",
+    "field": "  ",
+    "typeParameter": "<>",
+    "constant": "  ",
+    "class": " פּ ",
+    "interface": " 蘒",
+    "struct": "  ",
+    "event": "  ",
+    "operator": "  ",
+    "module": "  ",
+    "property": "  ",
+    "enum": " 練",
+    "reference": "  ",
+    "keyword": "  ",
+    "file": "  ",
+    "folder": " ﱮ ",
+    "color": "  ",
+    "unit": " 塞 ",
+    "snippet": "  ",
+    "text": "  ",
+    "constructor": "  ",
+    "value": "  ",
+    "enumMember": "  "
+  }
 }

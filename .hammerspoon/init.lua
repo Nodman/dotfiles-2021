@@ -6,19 +6,33 @@ local downKeyStroke = function()
   hs.eventtap.keyStroke({}, 'down')
 end
 
+local leftKeyStroke = function()
+  hs.eventtap.keyStroke({}, 'left')
+end
+
+local rightKeyStroke = function()
+  hs.eventtap.keyStroke({}, 'right')
+end
+
 local vimMotionUp = hs.hotkey.new({"ctrl"}, "k", upKeyStroke, nil, upKeyStroke)
 local vimMotionDown = hs.hotkey.new({"ctrl"}, "j", downKeyStroke, nil, downKeyStroke)
+local vimMotionRight = hs.hotkey.new({"ctrl"}, "l", rightKeyStroke, nil, rightKeyStroke)
+local vimMotionLeft = hs.hotkey.new({"ctrl"}, "h", leftKeyStroke, nil, leftKeyStroke)
 
 local enableVimNavigation = function()
   -- hs.alert.show('Enable VIM motion')
   vimMotionUp:enable()
   vimMotionDown:enable()
+  vimMotionLeft:enable()
+  vimMotionRight:enable()
 end
 
 local disableVimNavigation = function()
   -- hs.alert.show('Disable VIM motion')
   vimMotionUp:disable()
   vimMotionDown:disable()
+  vimMotionLeft:disable()
+  vimMotionRight:disable()
 end
 
 enableVimNavigation();
@@ -55,11 +69,9 @@ local appWatcher = hs.application.watcher.new(function(name, event)
   -- hs.alert.show("Event: "..(eventsHr[tostring(event)] or '').."; App: "..name, 10)
   if event == hs.application.watcher.activated then
     if name == 'kitty' then
-      vimMotionUp:disable()
-      vimMotionDown:disable()
+      disableVimNavigation()
     else
-      vimMotionUp:enable()
-      vimMotionDown:enable()
+      enableVimNavigation()
     end
   end
 end)

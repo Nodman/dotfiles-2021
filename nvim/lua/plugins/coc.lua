@@ -39,15 +39,10 @@ vim.g.coc_explorer_global_presets = {
 
 -- adjust highlight
 -- exec('hi! link CocErrorHighlight healthError', false)
-exec('hi! link CocUnusedHighlight CocExplorerBufferHidden', false)
-exec('hi! link CocErrorFloat NormalFloat', false)
-exec('hi! link CocWarningHighlight healthWarning', false)
+-- exec('hi! link CocErrorFloat NormalFloat', false)
+--[[ exec('hi! link CocWarningHighlight healthWarning', false)
 exec('hi! link CocExplorerBookmarkLine PmenuSel', false)
-exec('hi! link CocExplorerSelectUI MarkdownBold', false)
-exec('hi CocHoverRange guifg=NONE guibg=NONE gui=underline', false)
--- exec('hi LspDiagnosticsUnderlineError gui=undercurl', false)
--- exec('hi CocErrorHighlight guisp=#BF616A gui=undercurl,italic guibg=NONE guifg=NONE', false)
--- exec('hi CocErrorHighlight gui=undercurl guibg=NONE guifg=#BF616A', false)
+exec('hi! link CocExplorerSelectUI MarkdownBold', false) ]]
 
 -- commands
 exec([[
