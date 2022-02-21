@@ -1,12 +1,11 @@
-local exec = vim.api.nvim_exec
-local createAugroup = require('tools').createAugroup
+local createAugroup = require'tools'.createAugroup
+local hi = require'tools'.hi
 
 vim.g.spelunker_check_type = 2
 vim.g.spelunker_disable_auto_group = 1
 vim.g.spelunker_highlight_type = 2
 
-exec('hi SpelunkerSpellBad guifg=NONE gui=undercurl guisp=#EBCB8B', false)
-exec('hi SpelunkerComplexOrCompoundWord guifg=NONE gui=NONE', false)
+hi('SpelunkerComplexOrCompoundWord', { guifg='NONE', gui='NONE' })
 
 createAugroup({
   { 'CursorHold', '*.ts,*tsx,*.js,*.jsx,*.json,*.md,*.lua', 'call spelunker#check_displayed_words()' }

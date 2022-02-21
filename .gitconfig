@@ -19,8 +19,10 @@
 [diff]
 	tool = Kaleidoscope
 [user]
-	name = Nodman
+	name = Dmytro Burmistrov (Nodman)
 	email = nodman@icloud.com
 [core]
 	excludesfile = ~/.gitignore
 
+[init]
+	defaultBranch = main

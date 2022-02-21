@@ -87,7 +87,7 @@ alias ssh='TERM=xterm-256color ssh'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 wd() {
-  . /Users/spooner/bin/wd/wd.sh
+  . /usr/local/share/wd/wd.sh
 }
 
 # convert with ffmpeg (HDR -> SDR)
@@ -97,7 +97,7 @@ fmpg(){
 }
 
 #python path
-export PATH=~/Library/Python/3.9/bin:$PATH
+export PATH=/usr/local/opt/python@3.10/bin:$PATH
 
 # fnm
 export PATH=$HOME/.fnm:$PATH
