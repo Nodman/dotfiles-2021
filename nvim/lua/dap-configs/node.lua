@@ -1,9 +1,9 @@
-local dap = require'dap'
+local dap = require('dap')
 
 dap.adapters.node2 = {
   type = 'executable',
   command = 'node',
-  args = { vim.g.dap_root_path..'/vscode-node-debug2/out/src/nodeDebug.js' },
+  args = { vim.g.dap_root_path .. '/vscode-node-debug2/out/src/nodeDebug.js' },
 }
 
 dap.configurations.javascript = {
@@ -25,5 +25,5 @@ dap.configurations.javascript = {
     cwd = vim.fn.getcwd(),
     sourceMaps = true,
     protocol = 'inspector',
-  }
+  },
 }
