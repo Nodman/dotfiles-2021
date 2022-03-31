@@ -1,10 +1,11 @@
 local map = require('tools').map
+local createAugroup = require('tools').createAugroup
 
 -- set leader key
-map('n', '<Space>', '<Nop>', {silent = true})
-map('i', '<C-Space>', '<Nop>', {silent = true})
-map('n', '<C-Space>', '<Nop>', {silent = true})
-vim.g.mapleader = ' ';
+map('n', '<Space>', '<Nop>', { silent = true })
+map('i', '<C-Space>', '<Nop>', { silent = true })
+map('n', '<C-Space>', '<Nop>', { silent = true })
+vim.g.mapleader = ' '
 
 -- enter command line faster
 -- map('n', ';', ':')
@@ -33,10 +34,14 @@ map('', '<leader>fed', '<CMD>e $MYVIMRC<CR>')
 map('', '<leader>feR', '<CMD>luafile %<CR>')
 
 -- print file info
-map('n', '<Leader>if', '<CMD>echo printf("[%.2f KB] %s", wordcount().bytes / 1000.0, expand(@%))<CR>')
+map(
+  'n',
+  '<Leader>if',
+  '<CMD>echo printf("[%.2f KB] %s", wordcount().bytes / 1000.0, expand(@%))<CR>'
+)
 
 -- search selection in buffer
-map('v', '//', 'y/\\V<C-r>=escape(@","/\")<CR><CR>')
+map('v', '//', 'y/\\V<C-r>=escape(@","/")<CR><CR>')
 -- clear search highlight
 map('n', '<Leader>sc', '<CMD>nohl<CR>')
 
@@ -62,13 +67,14 @@ map('c', '<C-k>', '<C-p>')
 -- scroll through pop-up window with C-j and C-k and with tab
 -- map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
 -- map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
-map('i', '<C-k>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
-map('i', '<C-j>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
+map('i', '<C-k>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', { expr = true })
+map('i', '<C-j>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', { expr = true })
 
 -- exit buffer
 map('n', '<Leader>bd', '<CMD>bn|:bd#<CR>')
 -- wipe buffer
 map('n', '<Leader>bw', '<CMD>bw<CR>')
+map('n', '<Leader>bW', '<CMD>Wipe<CR>')
 -- create new buffer
 map('n', '<Leader>ba', '<CMD>badd<space>')
 -- next buffer
@@ -102,3 +108,12 @@ map('n', '<Leader>Q', '<CMD>cclose<CR>')
 
 -- alot of accidental presses
 map('n', '<S-q>', '<nop>')
+
+-- format buffer
+createAugroup({
+  {
+    'FileType',
+    'lua',
+    'nnoremap <buffer> <leader>bf <CMD>lua require("stylua-nvim").format_file()<CR>',
+  },
+}, 'format_keymap')

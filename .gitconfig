@@ -8,6 +8,7 @@
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustexitcode = true
+	trustExitCode = true
 [merge]
 	tool = Kaleidoscope
 [difftool "Kaleidoscope"]
@@ -19,10 +20,12 @@
 [diff]
 	tool = Kaleidoscope
 [user]
-	name = Dmytro Burmistrov (Nodman)
-	email = nodman@icloud.com
+	name = Nodman
+	email = rewind-pewter.0e@icloud.com
 [core]
 	excludesfile = ~/.gitignore
 
 [init]
 	defaultBranch = main
+[pull]
+	rebase = false

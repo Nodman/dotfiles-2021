@@ -1,31 +1,31 @@
 local map = require('tools').map
 
-map('n', ';', '<CMD>lua require("fine-cmdline").open()<CR>', {silent = true})
+map('n', ';', '<CMD>lua require("fine-cmdline").open()<CR>', { silent = true })
 
 require('fine-cmdline').setup({
   cmdline = {
     enable_keymaps = true,
-    prompt = ' :'
+    prompt = ' :',
   },
   popup = {
     buf_options = {
-      filetype = 'FineCmdlinePrompt'
+      filetype = 'FineCmdlinePrompt',
     },
-    relative = "editor",
+    relative = 'editor',
     position = {
       row = '10%',
       col = '50%',
     },
     size = {
       width = '30%',
-      height = 1
+      height = 1,
     },
     border = {
-      style = { " ", "▄", " ", " ", " ", "▀", " ", " " },
+      style = { ' ', '▄', ' ', ' ', ' ', '▀', ' ', ' ' },
     },
     win_options = {
       winblend = 0,
-      winhighlight = "Normal:FineCmdlineNormal,FloatBorder:FineCmdlineBorder"
+      winhighlight = 'Normal:FineCmdlineNormal,FloatBorder:FineCmdlineBorder',
     },
   },
   hooks = {
@@ -48,6 +48,6 @@ require('fine-cmdline').setup({
         end
       end)
       imap('<M-s>', '%s///gc<Left><Left><Left>')
-    end
-  }
+    end,
+  },
 })
